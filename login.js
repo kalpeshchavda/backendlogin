@@ -1,13 +1,17 @@
 const express = require('express'); // Include ExpressJS
+const router  = express.Router();
 const app = express(); // Create an ExpressJS app
 const bodyParser = require('body-parser'); // Middleware
 const userData = require('./userdata').userData;
+const cors = require('cors');
 
-const e = require('express');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
 
-app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/login', (req, res) => {
+router.post('/login', (req, res) => {
+    console.log(req.body);
   // Insert Login Code Here
   let username = req.body.username;
   let password = req.body.password;
@@ -20,7 +24,7 @@ app.post('/login', (req, res) => {
     
 //    console.log(userData)
    for(let uObj of userData){
-    console.log(uObj)
+    //console.log(uObj)
     if(username === uObj.userName && password === uObj.password){
         found= true;
         userObj = uObj;
@@ -35,22 +39,29 @@ app.post('/login', (req, res) => {
 }
 });
 
+app.use(router);
 
 
-app.post('/login1', (req, res) => {
-    // Insert Login Code Here
-    let username = req.body.username;
-    let password = req.body.password;
 
-    userData.forEach((user)=>{
-        if(user.userName === username && user.password === password){
-            res.send(user).status(200);
-            return;
-        }
-    })
+// app.post('/login1', (req, res) => {
+//     // Insert Login Code Here
+//     let username = req.body.username;
+//     let password = req.body.password;
+
+//     userData.forEach((user)=>{
+//         if(user.userName === username && user.password === password){
+//             res.send(user).status(200);
+//             return;
+//         }
+//     })
   
-      res.sendStatus(401).end();
-  });
+    
+//      if(found === true){
+      
+//      }else{
+//       res.sendStatus(401).end();
+//   }
+//   });
   
   
   const port = 8080
