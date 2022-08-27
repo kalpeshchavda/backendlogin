@@ -15,9 +15,8 @@ router.post('/login', (req, res) => {
   // Insert Login Code Here
   let username = req.body.username;
   let password = req.body.password;
- // res.send(`Username: ${username} Password: ${password}`);
-//console.log(userData);
 
+//console.log(userData);
 
    let found = false;
    let userObj = {};
@@ -41,8 +40,6 @@ router.post('/login', (req, res) => {
 
 app.use(router);
 
-
-
 // app.post('/login1', (req, res) => {
 //     // Insert Login Code Here
 //     let username = req.body.username;
@@ -62,7 +59,6 @@ app.use(router);
 //       res.sendStatus(401).end();
 //   }
 //   });
-  
   
   const port = 8080
   app.listen(port, () => console.log(`This app is listening on port ${port}`));
